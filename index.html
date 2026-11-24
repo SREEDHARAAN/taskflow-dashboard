@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Smart Task Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>TaskFlow</span>
+            </div>
+            <nav class="navbar">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-info">
+                    <span class="username">Student</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Stats Cards -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Total Tasks</h3>
+                    <p id="totalTasks" class="stat-number">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Completed</h3>
+                    <p id="completedTasks" class="stat-number">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Pending</h3>
+                    <p id="pendingTasks" class="stat-number">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Task Section -->
+        <div class="add-task-section">
+            <div class="card">
+                <h2><i class="fas fa-plus-circle"></i> Add New Task</h2>
+                <form id="taskForm">
+                    <input type="text" id="taskTitle" placeholder="Task title..." required>
+                    <input type="text" id="taskDescription" placeholder="Description (optional)">
+                    <input type="date" id="taskDueDate" required>
+                    <select id="taskPriority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium" selected>Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Kanban Board -->
+        <div class="kanban-board">
+            <div class="kanban-column">
+                <h3><i class="fas fa-inbox"></i> To Do</h3>
+                <div id="todoList" class="task-list"></div>
+            </div>
+            <div class="kanban-column">
+                <h3><i class="fas fa-spinner"></i> In Progress</h3>
+                <div id="inProgressList" class="task-list"></div>
+            </div>
+            <div class="kanban-column">
+                <h3><i class="fas fa-check-circle"></i> Completed</h3>
+                <div id="completedList" class="task-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Edit Task</h2>
+            <form id="editTaskForm">
+                <input type="hidden" id="editTaskId">
+                <input type="text" id="editTaskTitle" placeholder="Task title..." required>
+                <textarea id="editTaskDescription" placeholder="Description..." rows="3"></textarea>
+                <input type="date" id="editTaskDueDate" required>
+                <select id="editTaskPriority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-primary">Update Task</button>
+                    <button type="button" id="deleteTaskBtn" class="btn-danger">Delete Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
